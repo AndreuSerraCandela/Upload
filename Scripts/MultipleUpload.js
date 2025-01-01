@@ -3,9 +3,10 @@ function createUploadMarkup() {
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
         <div class="upload-container">
             <div id="drop-zone" class="drop-zone">
-                <p>Arrastra archivos aquí o</p>
-                <input type="file" id="fileInput" multiple class="file-input">
-                <label for="fileInput" class="upload-button">Selecciona archivos</label>
+                <i class='bx bx-arrow-to-top upload-icon'></i>
+                <p class="drop-text">Coloque los archivos para cargar o</p>
+                <input type="file" id="fileInput" multiple class="file-input" accept=".jpg, .jpeg, .bmp, .png, .gif, .tiff, .tif, .pdf, .docx, .doc, .xlsx, .xls, .pptx, .ppt, .msg, .xml">
+                <label for="fileInput" class="upload-link">haga clic aquí para examinar</label>
             </div>
             <div class="file-list-container">
                 <div id="file-list" class="file-list"></div>
@@ -16,54 +17,66 @@ function createUploadMarkup() {
                 height: 100%;
                 display: flex;
                 flex-direction: column;
-                padding: 20px;
+                padding: 10px;
+                font-family: "Segoe UI Semibold", "Segoe WP Semibold", device-segoe-semibold, "Segoe UI", "Segoe WP", Segoe, Tahoma, Helvetica, Arial, sans-serif !important;
             }
+            
 
             .drop-zone {
-                width: 90%;
-                min-height: 180px;
-                border: 2px dashed #e0e0e0;
-                border-radius: 12px;
-                padding: 24px;
+                width: 97%;
+                min-height: 120px;
+                border: 2px dashed #00838f;
+                border-radius: 4px;
+                padding: 25px;
                 text-align: center;
                 background: #ffffff;
-                margin-bottom: 20px;
+                margin-bottom: 10px;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
                 justify-content: center;
-                transition: all 0.3s ease;
-                box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+                transition: all 0.2s ease;
+                cursor: pointer;
+            }
+
+            .drop-zone:hover {
+                background: #D9F0F2;
+            }
+
+            .drop-zone:hover .upload-link {
+                text-decoration: underline;
             }
 
             .drop-zone p {
-                color: #666;
-                margin-bottom: 16px;
-                font-size: 1.1em;
+                color: #00838f;
+                margin-bottom: 1px;
+                font-family: "Segoe UI Semibold", "Segoe WP Semibold", device-segoe-semibold, "Segoe UI", "Segoe WP", Segoe, Tahoma, Helvetica, Arial, sans-serif !important;
+                font-size: 10pt;
+                font-weight: 400;
             }
 
             .drop-zone.dragover {
-                background: #f8f9ff;
-                border-color: #4361ee;
+                background: #F3F3F3;
+                border-color: #00838f;
                 transform: scale(1.02);
                 box-shadow: 0 4px 12px rgba(67, 97, 238, 0.15);
             }
-
+            
             .file-input {
                 display: none;
             }
 
             .upload-button {
                 display: inline-block;
-                padding: 12px 24px;
+                padding: 8px 8px;
                 background: #4361ee;
                 color: white;
                 border-radius: 8px;
                 cursor: pointer;
-                font-weight: 500;
+                font-weight: 400;
                 transition: all 0.2s ease;
                 border: none;
-                font-size: 0.95em;
+                font-size: 10pt;
             }
 
             .upload-button:hover {
@@ -74,14 +87,14 @@ function createUploadMarkup() {
 
             .file-list-container {
                 flex: 1;
-                min-height: 100px;
-                max-height: calc(120vh - 300px);
+                min-height: 140px;
+                max-height: calc(131vh - 300px);
                 overflow-y: auto;
                 overflow-x: hidden;
                 width: 100%;
                 background: #ffffff;
                 scrollbar-width: thin;
-                scrollbar-color: #4361ee #f0f0f0;
+                scrollbar-color: #B2E4E8 #F5FBFC;
             }
 
             .file-list-container::-webkit-scrollbar {
@@ -89,13 +102,18 @@ function createUploadMarkup() {
             }
 
             .file-list-container::-webkit-scrollbar-track {
-                background: #f0f0f0;
+                background: #F5FBFC;
                 border-radius: 4px;
             }
 
             .file-list-container::-webkit-scrollbar-thumb {
-                background-color: #4361ee;
+                background-color: #B2E4E8;
                 border-radius: 4px;
+                border: 2px solid #F5FBFC;
+            }
+
+            .file-list-container::-webkit-scrollbar-thumb:hover {
+                background-color: #8ED8DE;
             }
 
             .file-list {
@@ -115,6 +133,9 @@ function createUploadMarkup() {
                 justify-content: space-between;
                 align-items: center;
                 padding: 6px 8px;
+                font-size: normal !important;
+                font-family: "Segoe UI Semibold", "Segoe WP Semibold", device-segoe-semibold, "Segoe UI", "Segoe WP", Segoe, Tahoma, Helvetica, Arial, sans-serif !important;
+                color: #00838f;
                 background: white;
                 border-radius: 4px;
                 margin-bottom: 4px;
@@ -133,17 +154,24 @@ function createUploadMarkup() {
             .delete-button {
                 background: none;
                 border: none;
-                color: #ff4444;
+                color: #666666;
                 font-size: 1.2em;
                 cursor: pointer;
-                padding: 0 8px;
-                border-radius: 50%;
+                padding: 4px;
+                border-radius: 2px;
                 transition: all 0.2s ease;
+                display: flex;
+                align-items: center;
+                justify-content: center;
             }
 
             .delete-button:hover {
-                background-color: #ffeeee;
-                transform: scale(1.1);
+                color: #D83B01;
+                background-color: #F3F3F3;
+            }
+
+            .delete-button i {
+                font-size: 18px;
             }
 
             .file-info {
@@ -151,18 +179,30 @@ function createUploadMarkup() {
                 align-items: center;
                 gap: 8px;
                 flex: 1;
+                width: 100%;
             }
 
             .file-icon {
-                font-size: 1.5em;
-                min-width: 32px;
+                font-size: 1.2em;
+                min-width: 24px;
                 display: flex;
                 align-items: center;
                 justify-content: center;
+                transition: transform 0.2s ease;
+                cursor: pointer;
+            }
+
+            .file-icon:hover {
+                transform: scale(1.2);
             }
 
             .file-icon i {
                 font-size: 24px;
+                transition: color 0.2s ease;
+            }
+
+            .file-icon:hover i {
+                color: #00838f;
             }
 
             .file-icon.pdf i { color: #e13f2b; }
@@ -177,19 +217,37 @@ function createUploadMarkup() {
             .file-icon.default i { color: #767676; }
 
             .file-name {
-                margin-right: 12px;
-                color: #333;
+                margin-right: 0;
+                color: #00838f;
+                font-size: 10pt;
+                flex: 1;
             }
 
             .file-size {
-                color: #666;
-                font-size: 0.9em;
+                color: #222222;
+                font-size: 10pt;
+                margin-left: auto;
+                padding-left: 16px;
+            }
+
+            .upload-link {
+                color: #00838f;
+                cursor: pointer;
+                text-decoration: none;
+                font-size: 10pt;
+                font-weight: 400;
+                transition: all 0.2s ease;
+            }
+
+            .upload-link:hover {
+                text-decoration: underline;
+                color: #00838f;
             }
 
             @media (max-width: 768px) {
                 .drop-zone {
-                    min-height: 140px;
-                    padding: 16px;
+                    min-height: 120px;
+                    padding: 5px;
                 }
 
                 .upload-button {
@@ -197,6 +255,14 @@ function createUploadMarkup() {
                     font-size: 0.9em;
                 }
             }
+
+            .upload-icon {
+                color: #00838f;
+                font-size: 20px;
+                
+            }
+
+            
         </style>
     `;
 }
@@ -316,7 +382,9 @@ function updateFileList() {
                     <span class="file-name">${file.name}</span>
                     <span class="file-size">${formatFileSize(file.size)}</span>
                 </div>
-                <button class="delete-button" onclick="removeFile(${index})">×</button>
+                <button class="delete-button" onclick="removeFile(${index})">
+                    <i class='bx bxs-eraser' ></i>
+                </button>
             </div>
         `).join('');
 }

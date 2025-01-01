@@ -1,7 +1,7 @@
 page 50140 "Multiple File Upload"
 {
     PageType = NavigatePage;
-    Caption = 'Carga Múltiple de Archivos';
+    Caption = 'Permite adjuntar varios documentos';
     UsageCategory = Tasks;
     ApplicationArea = All;
     Extensible = false;
